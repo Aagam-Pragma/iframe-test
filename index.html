@@ -31,7 +31,7 @@
             const userObject = event.data;
             if (userObject) {
                 console.log("Received userObject from parent:", userObject);
-                localStorage.setItem("userObject", userObject);
+                localStorage.setItem("userObject", JSON.stringify(userObject));
             }
         });
     </script>
