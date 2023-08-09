@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,37 @@
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             let userObject = localStorage.getItem('userObject');
-            localStorage.setItem("user_phone", "9998887776");
+
             // Convert string back to object if found
             if (userObject) {
                 userObject = JSON.parse(userObject);
+            } else {
+                userObject = {
+                    phone: null,
+                    email: null
+                }
             }
 
             // Now, post this message to the parent window
             window.parent.postMessage(userObject, '*'); // * means you don't restrict which domain can receive this message, adjust as needed
-            window.parent.postMessage(localStorage.getItem("user_phone"), '*');
-            console.log("Hello Pragma");
+
+        });
+
+        window.addEventListener("message", function (event) {
+            // You can also check the origin for security reasons
+            // if (event.origin !== 'expected-origin-of-the-iframe') return;
+
+            const userObject = event.data;
+            if (userObject) {
+                console.log("Received userObject from parent:", userObject);
+                localStorage.setItem("userObject", userObject);
+            }
         });
     </script>
 </head>
+
 <body>
     <!-- iframe content -->
 </body>
+
 </html>
