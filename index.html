@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Page</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            let userObject = localStorage.getItem('userObject');
+            
+            // Convert string back to object if found
+            if (userObject) {
+                userObject = JSON.parse(userObject);
+            }
+
+            // Now, post this message to the parent window
+            window.parent.postMessage(userObject, '*'); // * means you don't restrict which domain can receive this message, adjust as needed
+
+            console.log("Hello Pragma");
+        });
+    </script>
+</head>
+<body>
+    <!-- iframe content -->
+</body>
+</html>
