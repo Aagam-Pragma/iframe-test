@@ -20,7 +20,7 @@
             }
 
             // Now, post this message to the parent window
-            window.parent.postMessage({userObject, topic: 'PRAGMA'}, '*'); // * means you don't restrict which domain can receive this message, adjust as needed
+            window.parent.postMessage({userInfo: userObject, topic: 'PRAGMA'}, '*'); // * means you don't restrict which domain can receive this message, adjust as needed
 
         });
 
