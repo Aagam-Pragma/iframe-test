@@ -7,7 +7,7 @@
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             let userObject = localStorage.getItem('userObject');
-            localStorage.setItem("user phone", "9998887776");
+            localStorage.setItem("user_phone", "9998887776");
             // Convert string back to object if found
             if (userObject) {
                 userObject = JSON.parse(userObject);
@@ -15,7 +15,7 @@
 
             // Now, post this message to the parent window
             window.parent.postMessage(userObject, '*'); // * means you don't restrict which domain can receive this message, adjust as needed
-
+            window.parent.postMessage(localStorage.getItem("user_phone"), '*');
             console.log("Hello Pragma");
         });
     </script>
